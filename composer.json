@@ -1,0 +1,15 @@
+{
+  "name": "lexus27/php-text-activetype",
+  "description": "Text Type for parsing and representation string values",
+  "minimum-stability": "beta",
+  "license": "Apache 2.0",
+  "authors": [{
+	"name": "Alexey Kutuzov",
+	"email": "lexus27.khv@gmail.com"
+  }],
+  "autoload": {
+	"psr-4": {
+	  "Jungle\\Activetype\\": "Jungle/Activetype/"
+	}
+  }
+}
