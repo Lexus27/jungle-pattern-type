@@ -1,7 +1,7 @@
 {
-  "name": "lexus27/php-text-activetype",
+  "name": "lexus27/php-text-typeflect",
   "description": "Text Type for parsing and representation string values",
-  "minimum-stability": "beta",
+  "minimum-stability": "dev",
   "license": "Apache 2.0",
   "authors": [{
 	"name": "Alexey Kutuzov",
@@ -9,7 +9,21 @@
   }],
   "autoload": {
 	"psr-4": {
-	  "Jungle\\Activetype\\": "Jungle/Activetype/"
+	  "Jungle\\Activetype\\": "Jungle/Activetype/",
+	  "Jungle\\Typeflect\\": "src/"
 	}
+  },
+  "require": {
+    "lexus27/php-regex": "dev-master"
+  },
+
+
+  "autoload-dev": {
+	"psr-4": {
+	  "Jungle\\Typeflect\\Tests\\": "tests/"
+	}
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
   }
 }

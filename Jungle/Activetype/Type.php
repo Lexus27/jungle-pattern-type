@@ -89,6 +89,23 @@ namespace Jungle\Activetype {
 		}
 
 		/**
+		 * @param $default
+		 * @return string|array|bool|float|int|null|\stdClass
+		 */
+		private static function evaluateSimpleValueString($default){
+			$default = trim($default);
+			switch(true){
+				case strcasecmp($default,'[]')===0: return [];
+				case strcasecmp($default,'{}')===0: return new \stdClass();
+				case strcasecmp($default,'null')===0: return null;
+				case strcasecmp($default,'true')===0: return true;
+				case strcasecmp($default,'false')===0: return false;
+				case is_numeric($default): return strpos($default,'.')!==false?floatval($default):intval($default);
+				default: return empty($default)?null:(string)$default;
+			}
+		}
+
+		/**
 		 * @param $name
 		 * @return Type|null
 		 */
@@ -176,7 +193,7 @@ namespace Jungle\Activetype {
 						$vartype = 'string';
 					}
 					if(!is_null($default)){
-						$default = Value::actualStringRepresentType($default);
+						$default = self::evaluateSimpleValueString($default);
 						$optional = true;
 					}else{
 						$this->arguments_has_required = true;
@@ -367,7 +384,7 @@ namespace Jungle\Activetype {
 		 */
 		public function validate($value, array $arguments = null){
 			$pattern = $this->getPattern($arguments);
-			return Pattern::validateValue($pattern, $value,'S');
+			return preg_match('@'.addcslashes($pattern,'@').'@S',$value) > 0;
 		}
 
 		/**
